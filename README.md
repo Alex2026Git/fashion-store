@@ -1,2 +1,2 @@
-# fashion-store
-هاذا المستودع خاص بموقع لبيع الملابس و الاحذية
+fashion store 
+A modern e-commerce clothing storewebsite built with html css and js feaures
