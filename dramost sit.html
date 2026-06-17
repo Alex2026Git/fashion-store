@@ -1,0 +1,942 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درموست - متجر الأحذية الفاخرة | Dramost</title>
+    <meta name="description" content="درموست - تشكيلة أحذية فاخرة لجميع المناسبات بجودة وأسعار منافسة">
+    <meta name="keywords" content="أحذية, حذاء, درموست, أحذية فاخرة, تسوق أحذية">
+    <meta name="author" content="Dramost Store">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Matte Green & Warm Gray palette */
+            --matte-green: #5a7a63;
+            --matte-green-dark: #3f6b53;
+            --warm-gray: #8f857b;
+            --warm-gray-dark: #6e665f;
+            --warm-gray-light: #f3efe9;
+
+            --primary-color: var(--matte-green);
+            --secondary-color: var(--warm-gray);
+            --accent-color: var(--warm-gray-light);
+            --text-dark: #000000;
+            --text-light: #333333;
+            --white: #ffffff;
+            --hover-color: var(--matte-green-dark);
+            --light-gold: var(--warm-gray-light);
+            --dark-accent: var(--warm-gray-dark);
+
+            /* Backwards-compatible aliases used in CSS */
+            --pink-accent: var(--warm-gray);
+            --pink-light: var(--warm-gray-light);
+            --green-accent: var(--matte-green);
+            --green-light: #e6efe6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--accent-color);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            letter-spacing: 3px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            flex: 1;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.5rem;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .language-selector {
+            background-color: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-selector:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--pink-accent);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-accent) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: #e8e8e8;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid var(--secondary-color);
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(90, 122, 99, 0.18);
+        }
+
+        .btn:hover {
+            background-color: var(--hover-color);
+            border-color: var(--hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(90, 122, 99, 0.32);
+        }
+
+        .btn-secondary {
+            background-color: var(--pink-accent);
+            border-color: var(--pink-accent);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d97ba3;
+            border-color: #d97ba3;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 3rem 0 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Color Palette Section */
+        .color-palette {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .color-chip {
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .color-chip.gold {
+            background-color: var(--light-gold);
+            color: var(--primary-color);
+        }
+
+        .color-chip.pink {
+            background-color: var(--pink-light);
+            color: var(--primary-color);
+        }
+
+        .color-chip.green {
+            background-color: var(--green-light);
+            color: var(--primary-color);
+        }
+
+        .color-chip:hover {
+            transform: scale(1.05);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #f0f0f0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(90, 122, 99, 0.12);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--accent-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* removed subtle gold overlay to keep visuals neutral */
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .product-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+
+        .add-to-cart {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--hover-color);
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-accent) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        /* decorative overlay removed to avoid floral-like visuals */
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: #d0d0d0;
+            font-size: 0.95rem;
+        }
+
+        /* Feedback Form */
+        .feedback-section {
+            background-color: var(--pink-light);
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            border-radius: 4px;
+        }
+
+        .feedback-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feedback-section h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--green-accent);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 6px rgba(90, 122, 99, 0.22);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            background-color: var(--green-accent);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background-color: var(--matte-green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 122, 99, 0.22);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .social-icon:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 2rem;
+            border-top: 2px solid var(--secondary-color);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            color: #d0d0d0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .language-selector {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            nav {
+                gap: 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">DRAMOST</a>
+            <nav id="nav-menu">
+                <a href="#home" data-ar="الرئيسية" data-en="Home" data-fr="Accueil">الرئيسية</a>
+                <a href="#products" data-ar="المنتجات" data-en="Products" data-fr="Produits">المنتجات</a>
+                <a href="#about" data-ar="حولنا" data-en="About" data-fr="À propos">حولنا</a>
+                <a href="#feedback" data-ar="آرائكم" data-en="Feedback" data-fr="Avis">آرائكم</a>
+                <a href="#contact" data-ar="اتصل بنا" data-en="Contact" data-fr="Contact">اتصل بنا</a>
+            </nav>
+            <div class="header-right">
+                <select class="language-selector" id="languageSelector" onchange="changeLanguage(this.value)">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                </select>
+                <div class="cart-icon" title="سلة التسوق">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+           <h1>درموست للأحذية — فخامة مع كل خطوة</h1>
+           <p>اكتشفوا أحدث تشكيلات الأحذية بجودة عالية وأسعار منافسة</p>
+           <button class="btn" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">تسوقوا الآن</button>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="container">
+        <h2 class="section-title" data-ar="مجموعتنا الحصرية" data-en="Our Exclusive Collection" data-fr="Notre Collection Exclusive">مجموعتنا الحصرية</h2>
+        <!-- palette removed as requested -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">◆</div>
+                <h3 data-ar="شحن سريع" data-en="Fast Shipping" data-fr="Livraison Rapide">شحن سريع</h3>
+                <p data-ar="توصيل سريع وآمن إلى باب منزلكم" data-en="Fast and secure delivery to your home" data-fr="Livraison rapide et sécurisée à votre domicile">توصيل سريع وآمن إلى باب منزلكم</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">◆</div>
+                <h3 data-ar="دفع آمن" data-en="Secure Payment" data-fr="Paiement Sécurisé">دفع آمن</h3>
+                <p data-ar="طرق دفع متعددة وآمنة تماماً" data-en="Multiple safe payment methods" data-fr="Plusieurs méthodes de paiement sûres">طرق دفع متعددة وآمنة تماماً</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">◆</div>
+                <h3 data-ar="إرجاع سهل" data-en="Easy Returns" data-fr="Retours Faciles">إرجاع سهل</h3>
+                <p data-ar="استرجاع مجاني خلال 30 يوم" data-en="Free returns within 30 days" data-fr="Retours gratuits sous 30 jours">استرجاع مجاني خلال 30 يوم</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">◆</div>
+                <h3 data-ar="جودة عالية" data-en="High Quality" data-fr="Haute Qualité">جودة عالية</h3>
+                <p data-ar="منتجات من أفضل الماركات" data-en="Products from best brands" data-fr="Produits des meilleures marques">منتجات من أفضل الماركات</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="feedback-section" id="feedback">
+        <div class="feedback-content">
+            <h2 data-ar="آرائكم تهمنا" data-en="Your Feedback Matters" data-fr="Votre Avis Compte">آرائكم تهمنا</h2>
+            <form id="feedbackForm" onsubmit="submitFeedback(event)">
+                <div class="form-group">
+                    <label data-ar="الاسم الكامل" data-en="Full Name" data-fr="Nom Complet">الاسم الكامل</label>
+                    <input type="text" name="name" required placeholder="">
+                </div>
+                <div class="form-group">
+                    <label data-ar="البريد الإلكتروني" data-en="Email" data-fr="E-mail">البريد الإلكتروني</label>
+                    <input type="email" name="email" required placeholder="">
+                </div>
+                <div class="form-group">
+                    <label data-ar="رقم الهاتف" data-en="Phone" data-fr="Téléphone">رقم الهاتف</label>
+                    <input type="tel" name="phone" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label data-ar="التقييم" data-en="Rating" data-fr="Note">التقييم</label>
+                    <select name="rating" required>
+                        <option value="">-- اختر التقييم --</option>
+                        <option value="5" data-ar="ممتاز جداً" data-en="Excellent" data-fr="Excellent">★★★★★ ممتاز جداً</option>
+                        <option value="4" data-ar="جيد جداً" data-en="Very Good" data-fr="Très Bien">★★★★ جيد جداً</option>
+                        <option value="3" data-ar="جيد" data-en="Good" data-fr="Bien">★★★ جيد</option>
+                        <option value="2" data-ar="مقبول" data-en="Fair" data-fr="Acceptable">★★ مقبول</option>
+                        <option value="1" data-ar="ضعيف" data-en="Poor" data-fr="Mauvais">★ ضعيف</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-ar="رأيكم وملاحظاتكم" data-en="Your Comments" data-fr="Vos Commentaires">رأيكم وملاحظاتكم</label>
+                    <textarea name="feedback" required placeholder=""></textarea>
+                </div>
+                <button type="submit" class="form-submit" data-ar="إرسال الرأي" data-en="Send Feedback" data-fr="Envoyer un Avis">إرسال الرأي</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h3 style="margin-bottom: 2rem; color: var(--secondary-color);" data-ar="تابعونا على وسائل التواصل" data-en="Follow Us" data-fr="Suivez-Nous">تابعونا على وسائل التواصل</h3>
+            <div class="social-links">
+                <a href="https://facebook.com" class="social-icon" title="Facebook" target="_blank">f</a>
+                <a href="https://instagram.com" class="social-icon" title="Instagram" target="_blank">📷</a>
+                <a href="https://twitter.com" class="social-icon" title="Twitter" target="_blank">𝕏</a>
+                <a href="https://tiktok.com" class="social-icon" title="TikTok" target="_blank">♪</a>
+                <a href="https://youtube.com" class="social-icon" title="YouTube" target="_blank">▶</a>
+            </div>
+            <p style="margin-top: 2rem;">&copy; 2024 <span data-ar="متجر درموست" data-en="Dramost Store" data-fr="Magasin Dramost">متجر درموست</span> - <span data-ar="جميع الحقوق محفوظة" data-en="All rights reserved" data-fr="Tous droits réservés">جميع الحقوق محفوظة</span></p>
+            <p data-ar="البريد الإلكتروني: info@dramost.dz | الهاتف: +213 5XX XXX XXX" data-en="Email: info@dramost.dz | Phone: +213 5XX XXX XXX" data-fr="E-mail: info@dramost.dz | Téléphone: +213 5XX XXX XXX">البريد الإلكتروني: info@dramost.dz | الهاتف: +213 5XX XXX XXX</p>
+            <p data-ar="متخصصون في تقديم أفضل المنتجات الفاخرة" data-en="Specialists in providing the best luxury products" data-fr="Spécialistes dans la fourniture des meilleurs produits de luxe">متخصصون في تقديم أفضل المنتجات الفاخرة</p>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                nameAr: "حذاء كعب عالي فاخر",
+                nameEn: "Luxury High Heel Shoe",
+                nameFr: "Chaussure à Talon Haut Luxe",
+                categoryAr: "أحذية كعب",
+                categoryEn: "High Heels",
+                categoryFr: "Talons Hauts",
+                price: 8500,
+                oldPrice: 12000,
+                descriptionAr: "حذاء كعب عالي بتصميم عصري وأناقة فائقة",
+                descriptionEn: "High heel shoe with modern design and supreme elegance",
+                descriptionFr: "Chaussure à talon haut au design moderne et élégance suprême",
+                image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop"
+            },
+            {
+                id: 2,
+                nameAr: "حذاء رياضي مريح",
+                nameEn: "Comfort Sports Shoe",
+                nameFr: "Chaussure de Sport Confort",
+                categoryAr: "أحذية رياضية",
+                categoryEn: "Sports Shoes",
+                categoryFr: "Chaussures de Sport",
+                price: 4200,
+                oldPrice: 6500,
+                descriptionAr: "حذاء رياضي مريح بتقنيات امتصاص الصدمات",
+                descriptionEn: "Comfort sports shoe with shock absorption",
+                descriptionFr: "Chaussure de sport confortable avec absorption des chocs",
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop"
+            },
+            {
+                id: 3,
+                nameAr: "بوت جلد طبيعي",
+                nameEn: "Natural Leather Boot",
+                nameFr: "Botte en Cuir Naturel",
+                categoryAr: "بوت",
+                categoryEn: "Boots",
+                categoryFr: "Bottes",
+                price: 5800,
+                oldPrice: 8500,
+                descriptionAr: "بوت جلدي مصنوع من جلد طبيعي عالي الجودة",
+                descriptionEn: "Leather boot made from high-quality natural leather",
+                descriptionFr: "Botte en cuir fabriquée à partir de cuir naturel de haute qualité",
+                image: "https://images.unsplash.com/photo-1544441892-3fb3650c1b45?w=400&h=400&fit=crop"
+            },
+            {
+                id: 4,
+                nameAr: "حذاء سهرة براق",
+                nameEn: "Glittery Evening Shoe",
+                nameFr: "Chaussure de Soirée Scintillante",
+                categoryAr: "أحذية السهرة",
+                categoryEn: "Evening Shoes",
+                categoryFr: "Chaussures de Soirée",
+                price: 12000,
+                oldPrice: 15000,
+                descriptionAr: "حذاء سهرة براق بتصميم فاخر وأنيق",
+                descriptionEn: "Glittery evening shoe with luxury and elegant design",
+                descriptionFr: "Chaussure de soirée scintillante au design luxe et élégant",
+                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop"
+            },
+            {
+                id: 5,
+                nameAr: "حذاء شرقي مطرز",
+                nameEn: "Embroidered Eastern Shoe",
+                nameFr: "Chaussure Orientale Brodée",
+                categoryAr: "أحذية شرقية",
+                categoryEn: "Eastern Shoes",
+                categoryFr: "Chaussures Orientales",
+                price: 6500,
+                oldPrice: 9000,
+                descriptionAr: "حذاء شرقي مطرز يدويا بتصاميم تقليدية",
+                descriptionEn: "Handmade embroidered eastern shoe with traditional designs",
+                descriptionFr: "Chaussure orientale brodée à la main avec designs traditionnels",
+                image: "https://images.unsplash.com/photo-1613134808121-f7ee6db72b84?w=400&h=400&fit=crop"
+            },
+            {
+                id: 6,
+                nameAr: "لوفر جلدي فاخر",
+                nameEn: "Luxury Leather Loafer",
+                nameFr: "Mocassin Cuir Luxe",
+                categoryAr: "مُوكاسين",
+                categoryEn: "Loafers",
+                categoryFr: "Mocassins",
+                price: 4800,
+                oldPrice: 7000,
+                descriptionAr: "لوفر جلدي فاخر مصمم للراحة والمظهر الأنيق",
+                descriptionEn: "Luxury leather loafer designed for comfort and elegant look",
+                descriptionFr: "Mocassin en cuir de luxe conçu pour le confort et un look élégant",
+                image: "https://images.unsplash.com/photo-1608256585620-cd4628902d4a?w=400&h=400&fit=crop"
+            },
+            {
+                id: 7,
+                nameAr: "صندل صيفي أنيق",
+                nameEn: "Elegant Summer Sandal",
+                nameFr: "Sandale d'Été Élégante",
+                categoryAr: "صنادل",
+                categoryEn: "Sandals",
+                categoryFr: "Sandales",
+                price: 5200,
+                oldPrice: 7500,
+                descriptionAr: "صندل صيفي بتصميم أنيق وألوان فاتحة",
+                descriptionEn: "Summer sandal with elegant design and light colors",
+                descriptionFr: "Sandale d'été au design élégant et couleurs légères",
+                image: "https://images.unsplash.com/photo-1603487566586-c3829b88a2fb?w=400&h=400&fit=crop"
+            },
+            {
+                id: 8,
+                nameAr: "حذاء رقص لاتيني",
+                nameEn: "Latin Dance Shoe",
+                nameFr: "Chaussure de Danse Latine",
+                categoryAr: "أحذية الرقص",
+                categoryEn: "Dance Shoes",
+                categoryFr: "Chaussures de Danse",
+                price: 7500,
+                oldPrice: 10500,
+                descriptionAr: "حذاء رقص لاتيني متخصص براحة وأداء عالي",
+                descriptionEn: "Specialized Latin dance shoe with comfort and high performance",
+                descriptionFr: "Chaussure de danse latine spécialisée avec confort et haute performance",
+                image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=400&fit=crop"
+            }
+        ];
+
+        let currentLanguage = 'ar';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-ar], [data-en], [data-fr]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text && element.tagName !== 'INPUT' && element.tagName !== 'SELECT' && element.tagName !== 'TEXTAREA' && element.tagName !== 'OPTION') {
+                    element.textContent = text;
+                }
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = text || '';
+                }
+            });
+
+            // Reload products
+            loadProducts();
+            
+            // Update form labels and placeholders
+            updateFormLabels();
+        }
+
+        function updateFormLabels() {
+            document.querySelectorAll('label[data-ar], label[data-en], label[data-fr]').forEach(label => {
+                label.textContent = label.getAttribute(`data-${currentLanguage}`);
+            });
+        }
+
+        function loadProducts() {
+            const grid = document.getElementById('productsGrid');
+            
+            grid.innerHTML = products.map(product => {
+                const name = currentLanguage === 'ar' ? product.nameAr : (currentLanguage === 'en' ? product.nameEn : product.nameFr);
+                const category = currentLanguage === 'ar' ? product.categoryAr : (currentLanguage === 'en' ? product.categoryEn : product.categoryFr);
+                const description = currentLanguage === 'ar' ? product.descriptionAr : (currentLanguage === 'en' ? product.descriptionEn : product.descriptionFr);
+                const addText = currentLanguage === 'ar' ? 'أضف' : (currentLanguage === 'en' ? 'Add' : 'Ajouter');
+                
+                return `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${name}" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${category}</div>
+                            <div class="product-name">${name}</div>
+                            <div class="product-description">${description}</div>
+                            <div class="product-footer">
+                                <div>
+                                    <span class="product-price">
+                                        <span class="old-price">${product.oldPrice} دج</span>
+                                        ${product.price} دج
+                                    </span>
+                                </div>
+                                <button class="add-to-cart" onclick="addToCart(${product.id})">${addText}</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addToCart(productId) {
+            const cart = parseInt(document.querySelector('.cart-count').textContent);
+            document.querySelector('.cart-count').textContent = cart + 1;
+            
+            const messages = {
+                ar: 'تمت إضافة المنتج إلى السلة بنجاح!',
+                en: 'Product added to cart successfully!',
+                fr: 'Produit ajouté au panier avec succès!'
+            };
+            alert(messages[currentLanguage]);
+        }
+
+        function submitFeedback(event) {
+            event.preventDefault();
+            
+            const messages = {
+                ar: 'شكراً لآرائكم القيمة! سيتم التواصل معكم قريباً.',
+                en: 'Thank you for your valuable feedback! We will contact you soon.',
+                fr: 'Merci pour votre précieux avis! Nous vous contacterons bientôt.'
+            };
+            
+            alert(messages[currentLanguage]);
+            document.getElementById('feedbackForm').reset();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            updateFormLabels();
+        });
+    </script>
+</body>
+</html>
